@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Register() {
-  return (
-      <div class="max-h-screen">
+    let [username, setUsername] = useState('')
+    let [email, setEmail] = useState("")
+    let [password, setPassword] = useState("")
+
+    let pressedRegisterButton = (e) => {
+        e.preventDefault()
+        if (!username || !email || !password) {
+            return toast.error("All fields are Required!")
+        }
+    }
+
+    return (
+        <div class="max-h-screen">
             <section class="border-red-500 bg-gray-200 min-h-screen flex items-center justify-center">
                 <div class="bg-gray-100 p-5 flex rounded-2xl flex-row flex-row-reverse shadow-lg max-w-3xl">
                     <div class="md:w-1/2 px-5 pl-10">
@@ -11,27 +23,26 @@ function Register() {
                         <p class="text-sm mt-4 text-[#002D74]">If you don't have an account, please Register</p>
                         <form class="mt-6" action="#" method="POST">
                             <div>
-                                <label class="block text-gray-700">Email Address</label>
-                                <input type="email" name="" id="" placeholder="Enter Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required />
+                                <label class="block text-gray-700" htmlFor='username'>Username</label>
+                                <input onChange={(e) => setUsername(e.target.value)} type="text" name="username" autoComplete="off" id="username" placeholder="Enter Username" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required />
+                            </div>
+
+                            <div className='mt-4'>
+                                <label class="block text-gray-700" htmlFor='email'>Email Address</label>
+                                <input type="email" onChange={(e) => setEmail(e.target.value)} name="email" id="email" autoComplete="off" placeholder="Enter Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required />
                             </div>
 
                             <div class="mt-4">
-                                <label class="block text-gray-700">Password</label>
-                                <input type="password" name="" id="" placeholder="Enter Password" minlength="6" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-                  focus:bg-white focus:outline-none" required />
-                            </div>
-                            <div class="mt-4">
-                                <label class="block text-gray-700">Password</label>
-                                <input type="password" name="" id="" placeholder="Enter Password" minlength="6" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+                                <label class="block text-gray-700" htmlFor='pass'>Password</label>
+                                <input type="password" onChange={(e) => setPassword(e.target.value)} name="password" id="pass" autoComplete="off" placeholder="Enter Password" minlength="6" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
                   focus:bg-white focus:outline-none" required />
                             </div>
 
 
-                            <button type="submit" class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg
+                            <button type="submit" onClick={pressedRegisterButton} class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg
                 px-4 py-3 mt-6">Register</button>
                         </form>
 
-                       
 
                         <div class="text-sm flex justify-between items-center mt-3">
                             <p>If you already have an account...</p>
@@ -46,7 +57,7 @@ function Register() {
                 </div>
             </section>
         </div>
-  )
+    )
 }
 
 export default Register

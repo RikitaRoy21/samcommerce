@@ -9,6 +9,7 @@ import Wishlist from './pages/Wishlist'
 import MyOrders from './pages/MyOrders'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
+import Publish from './pages/Publish'
 function App() {
   return (
     <div>
@@ -17,11 +18,11 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/sams' element={<Sams />} />
         <Route path='/wishlist' element={<Wishlist />} />
+        <Route path='/publish' element={<Publish />} />
         <Route path='/my-orders' element={<MyOrders />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        
         <Route path='*' element={<h1>404 Not Found</h1>} />
       </Routes>
       <Footer />
