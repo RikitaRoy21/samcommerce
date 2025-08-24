@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import data from "../data/websites";
+import { WishlistContext } from "../App";
 
 function Sams() {
+  const { wishlist, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
+
+  const isInWishlist = (item) => wishlist.some((w) => w.name === item.name);
+
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6 text-center">Marketplace</h1>
@@ -36,14 +41,31 @@ function Sams() {
                 <span className="text-sm text-gray-400">By {item.seller}</span>
               </div>
 
-              {/* File Type + Button */}
+              {/* File Type + Buttons */}
               <div className="flex justify-between items-center mt-4">
                 <span className="px-3 py-1 text-xs bg-blue-100 text-blue-600 rounded-full">
                   {item.fileType}
                 </span>
-                <button className="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition">
-                  Buy Now
-                </button>
+                <div className="flex flex-col gap-2">
+                  <button className="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition">
+                    Buy Now
+                  </button>
+                  {isInWishlist(item) ? (
+                    <button
+                      disabled
+                      className="px-4 py-2 bg-gray-400 text-white text-sm rounded-lg cursor-not-allowed"
+                    >
+                      Already in Wishlist
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => addToWishlist(item)}
+                      className="px-4 py-2 bg-gray-600 text-white text-sm rounded-lg hover:bg-gray-700 transition"
+                    >
+                      Add to Wishlist
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
