@@ -16,6 +16,7 @@ function Wishlist() {
               src={item.image}
               alt={item.name}
               className="w-28 h-20 object-cover rounded-lg"
+              loading='eager'
             />
 
             {/* Info */}
@@ -30,9 +31,14 @@ function Wishlist() {
             {/* Price + Button */}
             <div className="flex flex-col items-end gap-2">
               <span className="text-green-600 font-bold text-lg">₹{item.price}</span>
-              <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition">
-                Move to Cart
-              </button>
+              <div className="flex flex-row gap-2">
+                <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition">
+                  Buy Now
+                </button>
+                <button className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition">
+                  Remove
+                </button>
+              </div>
             </div>
           </div>
         ))}
